@@ -1,8 +1,8 @@
 import requests
 
 
-def weather(city, appid):
-      res = requests.get("http://api.openweathermap.org/data/2.5/weather",  # forecast если нужен прогноз погоды на неделю. Попробовать добавить format
+def weather(city, appid, wes):
+      res = requests.get("http://api.openweathermap.org/data/2.5/{}".format(wes),  # forecast если нужен прогноз погоды на неделю. Попробовать добавить format
                          params={'q': city, 'units': 'metric', 'lang': 'ru', 'APPID': appid})  # weather на день           Выбор между на неделю и на день
       data = res.json()
       print('Прогноз погоды на сегодня:', "\nПогодные условия:", data['weather'][0]['description'],
@@ -13,8 +13,8 @@ def weather(city, appid):
             '\nВидимость:', str(data['visibility']) + 'м')
 
 
-def forecast(city, appid):
-      res = requests.get("http://api.openweathermap.org/data/2.5/forecast",
+def forecast(city, appid, wes):
+      res = requests.get("http://api.openweathermap.org/data/2.5/{}".format(wes),
                          params={'q': city, 'units': 'metric', 'lang': 'ru', 'APPID': appid})
       data = res.json()
       for i in data['list']:
@@ -27,7 +27,11 @@ def forecast(city, appid):
 
 city = "Moscow,RU"
 appid = "57aa997149b0db17f5e2a70a573bb50f"
-forecast(city, appid)
-
-
+wes = str(input())
+while wes != 'exit':
+      if wes == 'day':
+            weather(city, appid, 'weather')
+      if wes == 'week':
+            forecast(city, appid, 'forecast')
+      wes = str(input())
 
