@@ -13,9 +13,10 @@ for i in data['list']:
           i['weather'][0]['description'], ">")
     print("------------------------------")
 
-
 # print("Город", city)
 # print("Погодные условия:", data['weather'][0]['description'])
 # print("Температура:", data['main']['temp'])
 # print("Минимальная температура:", data['main']['temp_min'])
 # print("Максимальная температура:", data['main']['temp_max'])
+
+
